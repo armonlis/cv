@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "src/js",
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "target": "ES6"
+  },
+  "include": ["src/ts/*.ts"],
+}
