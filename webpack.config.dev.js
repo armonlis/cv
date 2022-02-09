@@ -5,10 +5,13 @@ const path = require("path");
 module.exports = {
   mode: "development",
   target: "web",
-  entry: "/src/js/index.js",
+  entry: {
+    index: "/src/js/index.js",
+    startLoader: "/src/js/startLoader.js"
+  },
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "index.js"
+    filename: "[name].js"
   },
   devServer: {
     watchFiles: ["./src/*.html", "./src/js/*.js", "./src/css/*.css" ],
