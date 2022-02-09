@@ -4,10 +4,13 @@ const path = require("path");
 module.exports = {
   mode: "production",
   target: "web",
-  entry: "/src/js/index.js",
+  entry: {
+    index: "/src/js/index.js",
+    startLoader: "/src/js/startLoader.js"
+  },
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "index.js"
+    filename: "[name].js"
   },
   plugins: [
     new CopyWebpackPlugin({
