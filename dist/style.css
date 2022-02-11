@@ -1,7 +1,43 @@
-h1 {
-  color: red;
-  font-size: 48px;
-  border: 3px dotted green;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#start-loader {
+  height: 10vw;
+  width: 90vw;
+  font-size: 8vw;
+  font-weight: bold;
+  position: absolute;
+  top: calc(50% - 5vh);
+  left: calc(50% - 45vw);
+}
+#start-loader #start-loader__screen {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  overflow: hidden;
+  margin-left: 10vw;
+}
+
+#app-header {
+  width: 98%;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px dotted blue;
+}
+
+#app {
+  width: 98vw;
+  margin: 1vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-image: url("img/app-back.png");
+  border: 2px solid red;
 }
 
 /*# sourceMappingURL=style.css.map */
