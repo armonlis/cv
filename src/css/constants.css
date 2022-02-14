@@ -1,0 +1,12 @@
+@font-face {
+  font-family: MarckScript;
+  font-weight: 400;
+  src: url("./fonts/MarckScript-Regular.ttf");
+}
+@font-face {
+  font-family: RussoOne;
+  font-weight: 400;
+  src: url("./fonts/RussoOne-Regular.ttf");
+}
+
+/*# sourceMappingURL=constants.css.map */

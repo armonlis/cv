@@ -1,3 +1,13 @@
+@font-face {
+  font-family: MarckScript;
+  font-weight: 400;
+  src: url("./fonts/MarckScript-Regular.ttf");
+}
+@font-face {
+  font-family: RussoOne;
+  font-weight: 400;
+  src: url("./fonts/RussoOne-Regular.ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -20,16 +30,6 @@
   margin-left: 10vw;
 }
 
-@font-face {
-  font-family: MarckScript;
-  font-weight: 400;
-  src: url("./fonts/MarckScript-Regular.ttf");
-}
-@font-face {
-  font-family: RussoOne;
-  font-weight: 400;
-  src: url("./fonts/RussoOne-Regular.ttf");
-}
 #app-header {
   width: 98%;
   height: 20vh;
@@ -101,6 +101,16 @@
   text-decoration: underline;
 }
 
+@font-face {
+  font-family: MarckScript;
+  font-weight: 400;
+  src: url("./fonts/MarckScript-Regular.ttf");
+}
+@font-face {
+  font-family: RussoOne;
+  font-weight: 400;
+  src: url("./fonts/RussoOne-Regular.ttf");
+}
 #app {
   width: 98vw;
   height: 98vh;
