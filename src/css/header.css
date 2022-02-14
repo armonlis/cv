@@ -1,10 +1,20 @@
+@font-face {
+  font-family: MarckScript;
+  font-weight: 400;
+  src: url("./fonts/MarckScript-Regular.ttf");
+}
+@font-face {
+  font-family: RussoOne;
+  font-weight: 400;
+  src: url("./fonts/RussoOne-Regular.ttf");
+}
 #app-header {
   width: 98%;
   height: 20vh;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border: 2px dotted blue;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 #app-header #app-header__photo {
   height: 18vh;
@@ -24,6 +34,49 @@
   height: 15vh;
   margin-top: 1.5vh;
   margin-left: 3vh;
+}
+#app-header #app-header__main {
+  height: 18vh;
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#app-header #app-header__main h1 {
+  display: block;
+  font-family: MarckScript;
+  font-size: 8vh;
+}
+#app-header #app-header__main h3 {
+  height: 4vh;
+  padding: 0 1vh;
+  font-size: 3vh;
+}
+#app-header #app-header__contacts {
+  height: 18vh;
+  min-width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#app-header #app-header__contacts h3 {
+  height: 4vh;
+  padding: 0 1vh;
+  font-size: 3vh;
+}
+#app-header #app-header__contacts ul {
+  list-style-type: none;
+  font-family: MarckScript;
+  font-size: 2vh;
+}
+#app-header .stamp {
+  display: block;
+  font-family: RussoOne;
+  color: #fff;
+  background-color: #3498DB;
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=header.css.map */

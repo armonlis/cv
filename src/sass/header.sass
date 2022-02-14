@@ -1,10 +1,23 @@
+@font-face
+  font-family: MarckScript
+  font-weight: 400
+  src: url('./fonts/MarckScript-Regular.ttf')
+@font-face 
+  font-family: RussoOne
+  font-weight: 400
+  src: url('./fonts/RussoOne-Regular.ttf')
+
+$l_blue: #3498DB
+$white: #fff
+
+
 #app-header
   width: 98%
   height: 20vh
   display: flex
   align-items: center
-  justify-content: space-around
-  border: 2px dotted blue
+  justify-content: space-between
+  flex-wrap: wrap
   #app-header__photo
     height: 18vh
     width: 18vh
@@ -21,3 +34,41 @@
       height: 15vh
       margin-top: 1.5vh
       margin-left: 3vh
+  #app-header__main
+    height: 18vh
+    min-width: 50vw
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    h1
+      display: block
+      font-family: MarckScript
+      font-size: 8vh
+    h3
+      height: 4vh
+      padding: 0 1vh
+      font-size: 3vh
+  #app-header__contacts
+    height: 18vh
+    min-width: 30vw
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    h3
+      height: 4vh
+      padding: 0 1vh
+      font-size: 3vh
+    ul
+      list-style-type: none
+      li
+      font-family: MarckScript
+      font-size: 2vh
+
+  .stamp
+    display: block
+    font-family: RussoOne
+    color: $white
+    background-color: $l_blue
+    text-decoration: underline
