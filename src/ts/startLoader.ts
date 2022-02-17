@@ -4,7 +4,7 @@ function runLoader(): void {
   const pauseTime = 1000;
   let time = 0;
 
-  function addAndRun(sign: string, isEnd: boolean = false): void {
+  function addAndRun(sign: string, isEnd = false): void {
     const loader = document.querySelector('#start-loader__screen');
     const letter = document.createElement('p');
     letter.innerHTML = sign;
@@ -21,16 +21,16 @@ function runLoader(): void {
       if (margin === 0 && isEnd) {
         document.querySelector('#start-loader').setAttribute('data-done', String(isEnd));
       }
-    };
+    }
     
     window.requestAnimationFrame(runLetter);  
-  };
+  }
 
   for (let i = 0; i < loadStr.length; i += 1) {
     time += pauseTime;
     const isDone = i === loadStr.length - 1 ? true : false;
     setTimeout(() => addAndRun(loadStr[i], isDone), time);
-  };
-};
+  }
+}
 
 runLoader();

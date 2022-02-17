@@ -7,10 +7,10 @@ function runApp(): void {
     if (isDone) {
       app.run();
     } else {
-      setTimeout(checkLoader, 500)
+      setTimeout(checkLoader, 500);
     }
-  };
-  setTimeout(checkLoader, 500)
-};
+  }
+  setTimeout(checkLoader, 500);
+}
 
 runApp();

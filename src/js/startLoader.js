@@ -21,16 +21,12 @@ function runLoader() {
                 document.querySelector('#start-loader').setAttribute('data-done', String(isEnd));
             }
         }
-        ;
         window.requestAnimationFrame(runLetter);
     }
-    ;
     for (let i = 0; i < loadStr.length; i += 1) {
         time += pauseTime;
         const isDone = i === loadStr.length - 1 ? true : false;
         setTimeout(() => addAndRun(loadStr[i], isDone), time);
     }
-    ;
 }
-;
 runLoader();

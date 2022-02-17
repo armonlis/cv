@@ -8,5 +8,10 @@
   font-weight: 400;
   src: url("./fonts/RussoOne-Regular.ttf");
 }
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  src: url("./fonts/Roboto-Regular.ttf");
+}
 
 /*# sourceMappingURL=constants.css.map */

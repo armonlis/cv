@@ -10,8 +10,6 @@ function runApp() {
             setTimeout(checkLoader, 500);
         }
     }
-    ;
     setTimeout(checkLoader, 500);
 }
-;
 runApp();
