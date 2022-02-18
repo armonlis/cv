@@ -1,15 +1,18 @@
-export interface IApp {
-  run: () => void,
+export interface IElement {
+  tag: string,
+  id: string,
+  fill: Record<string, string>,
 };
 
-export interface IAppElement {
-  tag: string,
-  id?: string,
-  elClass?: string,
-  fill?: Record<string, string>,
+export interface IModel {
+  getStruct: () => HTMLElement[],
 };
-export interface IAppConfig {
+
+export interface IViewer {
+  view: () => void,
+};
+
+export interface IViewerConfig {
   startLoaderId: string,
-  structure: IAppElement[],
-  lang?: string
+  getHTML: () => HTMLElement[],
 };

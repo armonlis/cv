@@ -4,7 +4,7 @@ function runApp() {
     function checkLoader() {
         const isDone = document.querySelector(`#${startLoaderId}`).getAttribute('data-done') === 'true' ? true : false;
         if (isDone) {
-            app.run();
+            app.view();
         }
         else {
             setTimeout(checkLoader, 500);
