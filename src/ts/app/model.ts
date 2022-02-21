@@ -1,4 +1,4 @@
-import { IModel, IElement } from './interfaces';
+import { IModel, IElement, IModelConfig } from './interfaces';
 
 export default class Model implements IModel {
   static _isCreated = false;
@@ -6,14 +6,16 @@ export default class Model implements IModel {
   private lang: string;
   private eventReadyName: string;
 
-  constructor(options: { HTMLStructure: IElement[], eventReadyName?: string }) {
+  constructor(options: IModelConfig) {
     if (!Model._isCreated) {
       const { HTMLStructure, eventReadyName } = options;
       this.HTMLStructure = HTMLStructure;
       this.lang = 'en';
       this.eventReadyName = eventReadyName ?? 'modReady';
       Model._isCreated = true;  
-    } 
+    } else {
+      throw new Error('The model is allready exist.')
+    }
   };
 
   getStruct = () => {

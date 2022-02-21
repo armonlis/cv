@@ -16,3 +16,8 @@ export interface IViewerConfig {
   startLoaderId: string,
   modelReadyEventName?: string,
 };
+
+export interface IModelConfig {
+  HTMLStructure: IElement[], 
+  eventReadyName?: string
+};

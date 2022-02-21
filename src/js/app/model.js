@@ -17,6 +17,9 @@ export default class Model {
             this.eventReadyName = eventReadyName !== null && eventReadyName !== void 0 ? eventReadyName : 'modReady';
             Model._isCreated = true;
         }
+        else {
+            throw new Error('The model is allready exist.');
+        }
     }
     ;
 }
