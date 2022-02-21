@@ -5,14 +5,14 @@ export interface IElement {
 };
 
 export interface IModel {
-  getStruct: () => HTMLElement[],
+  getStruct: () => void,
 };
 
 export interface IViewer {
-  view: () => void,
+  view: (event: CustomEvent) => void,
 };
 
 export interface IViewerConfig {
   startLoaderId: string,
-  getHTML: () => HTMLElement[],
+  modelReadyEventName?: string,
 };

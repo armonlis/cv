@@ -1,11 +1,11 @@
 export default class Viewer {
     constructor(options) {
-        const { startLoaderId, getHTML } = options;
+        const { startLoaderId, modelReadyEventName } = options;
         this.startLoaderId = startLoaderId;
-        this.getHTML = getHTML;
+        document.addEventListener(`${modelReadyEventName !== null && modelReadyEventName !== void 0 ? modelReadyEventName : 'modReady'}`, (event) => this.view(event));
     }
     ;
-    view() {
+    view(event) {
         document.querySelector(`#${this.startLoaderId}`).remove();
         let appDiv = document.querySelector('#app');
         if (appDiv) {
@@ -14,7 +14,7 @@ export default class Viewer {
         appDiv = document.createElement('div');
         appDiv.id = 'app';
         document.querySelector('body').append(appDiv);
-        this.getHTML().forEach(elem => {
+        event.detail.structure.forEach((elem) => {
             document.querySelector('#app').append(elem);
         });
     }

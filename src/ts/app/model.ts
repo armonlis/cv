@@ -3,12 +3,15 @@ import { IModel, IElement } from './interfaces';
 export default class Model implements IModel {
   static _isCreated = false;
   private HTMLStructure: IElement[];
-  private lang: string
+  private lang: string;
+  private eventReadyName: string;
 
-  constructor(HTMLStructure: IElement[]) {
+  constructor(options: { HTMLStructure: IElement[], eventReadyName?: string }) {
     if (!Model._isCreated) {
+      const { HTMLStructure, eventReadyName } = options;
       this.HTMLStructure = HTMLStructure;
       this.lang = 'en';
+      this.eventReadyName = eventReadyName ?? 'modReady';
       Model._isCreated = true;  
     } 
   };
@@ -21,7 +24,6 @@ export default class Model implements IModel {
       HTMLElem.innerHTML = elem.fill[this.lang];
       elements.push(HTMLElem);
     });
-    return elements;      
+    document.dispatchEvent(new CustomEvent(`${this.eventReadyName}`, { detail: { structure: elements } }));
   };
 };
-
