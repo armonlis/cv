@@ -28,4 +28,6 @@ export default class Model implements IModel {
     });
     document.dispatchEvent(new CustomEvent(`${this.eventReadyName}`, { detail: { structure: elements } }));
   };
+
+  
 };

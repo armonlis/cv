@@ -1,8 +1,9 @@
 export default class Viewer {
     constructor(options) {
-        const { startLoaderId, modelReadyEventName } = options;
+        const { startLoaderId, modelReadyEventName, doneEventName } = options;
         this.startLoaderId = startLoaderId;
         document.addEventListener(`${modelReadyEventName !== null && modelReadyEventName !== void 0 ? modelReadyEventName : 'modReady'}`, (event) => this.view(event));
+        this.doneEvent = new Event(`${doneEventName !== null && doneEventName !== void 0 ? doneEventName : 'viewDone'}`);
     }
     ;
     view(event) {
@@ -17,6 +18,7 @@ export default class Viewer {
         event.detail.structure.forEach((elem) => {
             document.querySelector('#app').append(elem);
         });
+        document.dispatchEvent(this.doneEvent);
     }
     ;
 }
