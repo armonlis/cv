@@ -4,10 +4,16 @@ export interface IElement {
   fill: Record<string, string>,
 };
 
+export interface IListenerDetail {
+  action: string,
+  actTarget: HTMLElement | null | Element,
+  fill: string;
+};
+
 export interface IListener {
   type: string,
   element?: string,
-  detail?: Record<string, string>
+  detail?: IListenerDetail[]
 };
 
 export interface IModel {
@@ -30,10 +36,12 @@ export interface IViewerConfig {
 
 export interface IModelConfig {
   HTMLStructure: IElement[], 
-  eventReadyName?: string
+  eventReadyName?: string,
+  eventChangeModelName?: string
 };
 
 export interface IControllerConfig {
-  eventName?: string;
-  viewDoneEventName?: string
+  eventName?: string,
+  viewDoneEventName?: string,
+  eventChangeModelName?: string
 };

@@ -1,9 +1,11 @@
 export default class Controller {
     constructor(options = {}) {
-        const { eventName, viewDoneEventName } = options;
+        var _a;
+        const { eventName, viewDoneEventName, eventChangeModelName } = options;
         if (!Controller._isCreated) {
             this.listeners = [];
             this.eventName = eventName !== null && eventName !== void 0 ? eventName : 'eventForController';
+            (_a = this.eventChangeModelName == eventChangeModelName) !== null && _a !== void 0 ? _a : 'modChange';
             Controller._isCreated = true;
         }
         else {
@@ -27,7 +29,10 @@ export default class Controller {
         this.listeners.forEach(elem => {
             if (elem.element && document.querySelectorAll(elem.element)) {
                 document.querySelectorAll(elem.element).forEach(el => {
-                    el.addEventListener(elem.type, () => document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail: elem.detail })));
+                    el.addEventListener(elem.type, () => {
+                        elem.detail.forEach(det => { var _a; return det.actTarget = (_a = det.actTarget) !== null && _a !== void 0 ? _a : el; });
+                        document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail: elem.detail }));
+                    });
                 });
             }
             else {
@@ -37,7 +42,13 @@ export default class Controller {
     }
     ;
     processEvent(event) {
-        console.log('EVENT!!!');
+        event.detail.forEach((elem) => {
+            const { action, actTarget, fill } = elem;
+            switch (action) {
+                case 'addClass': document.dispatchEvent(new CustomEvent(`${this.eventChangeModelName}`, { detail: { action, actTarget, fill } }));
+            }
+            ;
+        });
     }
     ;
 }

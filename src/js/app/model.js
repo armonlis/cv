@@ -11,10 +11,11 @@ export default class Model {
             document.dispatchEvent(new CustomEvent(`${this.eventReadyName}`, { detail: { structure: elements } }));
         };
         if (!Model._isCreated) {
-            const { HTMLStructure, eventReadyName } = options;
+            const { HTMLStructure, eventReadyName, eventChangeModelName } = options;
             this.HTMLStructure = HTMLStructure;
             this.lang = 'en';
             this.eventReadyName = eventReadyName !== null && eventReadyName !== void 0 ? eventReadyName : 'modReady';
+            document.addEventListener(`${eventChangeModelName}`, (event) => this.changeModel(event));
             Model._isCreated = true;
         }
         else {
@@ -22,6 +23,10 @@ export default class Model {
         }
     }
     ;
+    changeModel(event) {
+        const { action, actTarget, fill } = event.detail;
+        console.log(this.HTMLStructure);
+    }
 }
 Model._isCreated = false;
 ;

@@ -6,7 +6,7 @@ import { startLoaderId, structure } from './app/constants';
 const viewer = new Viewer({ startLoaderId });
 const model = new Model({ HTMLStructure: structure });
 const controller = new Controller();
-controller.regListener({type: 'click', element: '#app-nav'});
+controller.regListener({type: 'click', element: '.app-nav__elem', detail: [{ action: 'addClass', actTarget: null, fill: 'active' }]});
 
 function runApp(): void {
   function checkLoader() {

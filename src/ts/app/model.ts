@@ -8,10 +8,11 @@ export default class Model implements IModel {
 
   constructor(options: IModelConfig) {
     if (!Model._isCreated) {
-      const { HTMLStructure, eventReadyName } = options;
+      const { HTMLStructure, eventReadyName, eventChangeModelName } = options;
       this.HTMLStructure = HTMLStructure;
       this.lang = 'en';
       this.eventReadyName = eventReadyName ?? 'modReady';
+      document.addEventListener(`${eventChangeModelName}`, (event: CustomEvent) => this.changeModel(event));
       Model._isCreated = true;  
     } else {
       throw new Error('The model is allready exist.')
@@ -29,5 +30,10 @@ export default class Model implements IModel {
     document.dispatchEvent(new CustomEvent(`${this.eventReadyName}`, { detail: { structure: elements } }));
   };
 
+  changeModel(event: CustomEvent) {
+    const { action, actTarget, fill } = event.detail;
+    console.log(this.HTMLStructure)
+    
+  }
   
 };
