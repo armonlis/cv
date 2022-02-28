@@ -12,15 +12,14 @@ export default class Viewer implements IViewer {
   };
 
   view(event: CustomEvent) {
+    console.log(event.detail.structure)
     document.querySelector(`#${this.startLoaderId}`).remove();
     let appDiv = document.querySelector('#app');
-    if (appDiv) { appDiv.remove() }
-    appDiv = document.createElement('div');
-    appDiv.id = 'app';
-    document.querySelector('body').append(appDiv);
-    event.detail.structure.forEach((elem: HTMLElement) => {
-      document.querySelector('#app').append(elem);
-    });
+    if (appDiv) { 
+      appDiv.replaceWith(event.detail.structure);
+    } else {
+      document.querySelector('body').append(event.detail.structure);
+    };
     document.dispatchEvent(this.doneEvent);
   };
 };

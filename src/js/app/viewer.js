@@ -7,17 +7,16 @@ export default class Viewer {
     }
     ;
     view(event) {
+        console.log(event.detail.structure);
         document.querySelector(`#${this.startLoaderId}`).remove();
         let appDiv = document.querySelector('#app');
         if (appDiv) {
-            appDiv.remove();
+            appDiv.replaceWith(event.detail.structure);
         }
-        appDiv = document.createElement('div');
-        appDiv.id = 'app';
-        document.querySelector('body').append(appDiv);
-        event.detail.structure.forEach((elem) => {
-            document.querySelector('#app').append(elem);
-        });
+        else {
+            document.querySelector('body').append(event.detail.structure);
+        }
+        ;
         document.dispatchEvent(this.doneEvent);
     }
     ;
