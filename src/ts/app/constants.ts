@@ -4,9 +4,9 @@ import main from './main/main';
 import footer from './footer/footer';
 
 export const startLoaderId = 'start-loader';
-export const structure = [
+export const structure = {
   header,
   nav,
   main,
   footer
-];
+};

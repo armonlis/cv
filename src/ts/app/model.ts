@@ -1,44 +1,57 @@
-import { IModel, IElement, IModelConfig } from './interfaces';
+import { IModel, IElementStructure, IModelConfig } from './interfaces';
 
 export default class Model implements IModel {
   static _isCreated = false;
-  private HTMLModel: HTMLElement;
+  header: IElementStructure;
+  nav: IElementStructure;
+  main: IElementStructure;
+  footer: IElementStructure;
+  readonly toModelEventName: string;
+  readonly modelEventName: string;
+  readonly toViewerEventName: string;
   
-  private lang: string;
-  private eventReadyName: string;
-
   constructor(options: IModelConfig) {
     if (!Model._isCreated) {
-      const { HTMLStructure, eventReadyName, eventChangeModelName } = options;
-      this.lang = 'en';
-      this.HTMLModel = document.createElement('div');
-      this.HTMLModel.id = 'app';
-      this.buildModel(HTMLStructure);
-      this.eventReadyName = eventReadyName ?? 'modReady';
-      document.addEventListener(`${eventChangeModelName}`, (event: CustomEvent) => this.changeModel(event));
+      const { HTMLStructure, toModelEventName, toViewerEventName } = options;
+      const { header, nav, main, footer } = HTMLStructure;
+      this.header = header;
+      this.nav = nav;
+      this.main = main;
+      this.footer = footer;
+      this.toViewerEventName = toViewerEventName ?? 'toViewer';
+      document.addEventListener(`${toModelEventName ?? 'toModel'}`, (event: CustomEvent) => this.handler(event));
       Model._isCreated = true;  
     } else {
-      throw new Error('The model is allready exist.')
+      throw new Error('The model is allready exist.');
     }
   };
-
-  buildModel = (basicStruct: IElement[]) => {
-    basicStruct.forEach((elem: IElement) => {
-      const HTMLElem = document.createElement(elem.tag);
-      HTMLElem.id = elem.id;
-      HTMLElem.innerHTML = elem.fill[this.lang];
-      this.HTMLModel.append(HTMLElem);
-    });
-  };
-
-  getStruct() {
-    document.dispatchEvent(new CustomEvent(`${this.eventReadyName}`, { detail: { structure: this.HTMLModel } }));
-  };
-
-  changeModel(event: CustomEvent) {
-    const { action, actTarget, fill } = event.detail;
-    
-    
-  }
   
+  getStruct(lang: string = 'en') {
+    document.dispatchEvent(new CustomEvent(`${this.toViewerEventName}`, { 
+      detail: {
+        from: 'model',
+        action: 'structure',
+        details: {
+          data: [
+            {...this.header, fill: this.header.fill[lang]},
+            {...this.nav, fill: this.nav.fill[lang]},
+            {...this.main, fill: this.main.fill[lang]},
+            {...this.footer, fill: this.footer.fill[lang]}
+          ]
+        }
+      }
+    }));
+  };
+
+  handler(event: CustomEvent) {
+    const { from, action, details } = event.detail;
+    const { lang } = details;
+    switch (from) {
+      case 'viewer': switch (action) {
+        case 'get_structure': this.getStruct(lang); return;
+        default: throw new Error('The model does not know this action for viewer.');
+      };
+      default: throw new Error('The model does not know this sender.');
+    };
+  };
 };

@@ -30,18 +30,17 @@ export default class Controller {
             if (elem.element && document.querySelectorAll(elem.element)) {
                 document.querySelectorAll(elem.element).forEach(el => {
                     el.addEventListener(elem.type, () => {
-                        elem.detail.forEach(det => { var _a; return det.actTarget = (_a = det.actTarget) !== null && _a !== void 0 ? _a : el; });
-                        document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail: elem.detail }));
+                        const detail = [...elem.detail];
+                        detail.forEach(det => { var _a, _b; return det.actTarget = (_b = (_a = det.actTarget) !== null && _a !== void 0 ? _a : el.id) !== null && _b !== void 0 ? _b : ''; });
+                        document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail }));
                     });
                 });
-            }
-            else {
-                document.addEventListener(elem.type, () => document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail: elem.detail })));
             }
         });
     }
     ;
     processEvent(event) {
+        console.log('PROCESS>>>', event.detail);
         event.detail.forEach((elem) => {
             const { action, actTarget, fill } = elem;
             switch (action) {

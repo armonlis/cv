@@ -1,23 +1,47 @@
 export default class Viewer {
     constructor(options) {
-        const { startLoaderId, modelReadyEventName, doneEventName } = options;
+        const { startLoaderId, toViewerEventName } = options;
         this.startLoaderId = startLoaderId;
-        document.addEventListener(`${modelReadyEventName !== null && modelReadyEventName !== void 0 ? modelReadyEventName : 'modReady'}`, (event) => this.view(event));
-        this.doneEvent = new Event(`${doneEventName !== null && doneEventName !== void 0 ? doneEventName : 'viewDone'}`);
+        document.addEventListener(`${toViewerEventName !== null && toViewerEventName !== void 0 ? toViewerEventName : 'toViewer'}`, (event) => this.handler(event));
     }
     ;
-    view(event) {
-        console.log(event.detail.structure);
-        document.querySelector(`#${this.startLoaderId}`).remove();
+    buildHTML(data) {
+        const app = document.createElement('div');
+        app.id = 'app';
+        data.forEach(el => {
+            const node = document.createElement(el.tag);
+            node.id = el.id;
+            node.innerHTML = el.fill;
+            app.append(node);
+        });
+        return app;
+    }
+    ;
+    view(data) {
+        const startLoader = document.querySelector(`#${this.startLoaderId}`);
+        if (startLoader) {
+            startLoader.remove();
+        }
         let appDiv = document.querySelector('#app');
         if (appDiv) {
-            appDiv.replaceWith(event.detail.structure);
+            appDiv.remove();
         }
-        else {
-            document.querySelector('body').append(event.detail.structure);
+        appDiv = this.buildHTML(data);
+        document.querySelector('body').append(appDiv);
+    }
+    ;
+    handler(event) {
+        const { from, action, details } = event.detail;
+        const { data } = details;
+        switch (from) {
+            case 'model': switch (action) {
+                case 'structure':
+                    this.view(data);
+                    return;
+                default: throw new Error('The viewer does not know this action from the model.');
+            }
+            default: throw new Error('The viewer does not know this sender.');
         }
-        ;
-        document.dispatchEvent(this.doneEvent);
     }
     ;
 }

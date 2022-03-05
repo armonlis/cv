@@ -34,17 +34,20 @@ export default class Controller implements IController {
       if (elem.element && document.querySelectorAll(elem.element)) {
         document.querySelectorAll(elem.element).forEach(el => {
           el.addEventListener(elem.type, () => {
-            elem.detail.forEach(det => det.actTarget = det.actTarget ?? el);
-            document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail: elem.detail }));
+            const detail = [...elem.detail];
+            detail.forEach(det => det.actTarget = det.actTarget ?? el.id ?? '');
+            document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail }));
           });
         }) 
-      } else {
-        document.addEventListener(elem.type, () => document.dispatchEvent(new CustomEvent(`${this.eventName}`, {detail: elem.detail})));
-      }
+      } /*else {
+        const detail = [...elem.detail];
+        document.addEventListener(elem.type, () => document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail })));
+      }*/
     }); 
   };
 
   private processEvent(event: CustomEvent) {
+    console.log('PROCESS>>>', event.detail)
     event.detail.forEach((elem: IListenerDetail) => {
       const { action, actTarget, fill } = elem;
       switch (action) {
