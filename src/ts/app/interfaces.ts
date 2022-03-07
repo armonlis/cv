@@ -10,16 +10,11 @@ export interface IElement {
   fill: string,
 };
 
-export interface IListenerDetail {
-  action: string,
-  actTarget: string | null,
-  fill: string;
-};
-
 export interface IListener {
-  type: string,
-  element?: string,
-  detail?: IListenerDetail[]
+  type: string;
+  node: 'header' | 'nav' | 'main' | 'footer';
+  target: string;
+  action: string;
 };
 
 export interface IModel {
@@ -38,6 +33,7 @@ export interface IController {
 export interface IViewerConfig {
   startLoaderId: string,
   toViewerEventName?: string,
+  toControllerEventName?: string
 };
 
 export interface IModelConfig {
@@ -52,7 +48,7 @@ export interface IModelConfig {
 };
 
 export interface IControllerConfig {
-  eventName?: string,
-  viewDoneEventName?: string,
-  eventChangeModelName?: string
+  toControllerEventName?: string,
+  toViewerEventName?: string,
+  toModelEventName?: string
 };

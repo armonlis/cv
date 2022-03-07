@@ -1,7 +1,8 @@
 export default class Viewer {
     constructor(options) {
-        const { startLoaderId, toViewerEventName } = options;
+        const { startLoaderId, toViewerEventName, toControllerEventName } = options;
         this.startLoaderId = startLoaderId;
+        this.toControllerEventName = toControllerEventName !== null && toControllerEventName !== void 0 ? toControllerEventName : 'toController';
         document.addEventListener(`${toViewerEventName !== null && toViewerEventName !== void 0 ? toViewerEventName : 'toViewer'}`, (event) => this.handler(event));
     }
     ;
@@ -28,18 +29,35 @@ export default class Viewer {
         }
         appDiv = this.buildHTML(data);
         document.querySelector('body').append(appDiv);
+        document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, {
+            detail: {
+                from: 'viewer',
+                action: 'addListeners'
+            }
+        }));
     }
     ;
     handler(event) {
         const { from, action, details } = event.detail;
-        const { data } = details;
+        const data = details === null || details === void 0 ? void 0 : details.data;
+        const target = details === null || details === void 0 ? void 0 : details.target;
         switch (from) {
-            case 'model': switch (action) {
-                case 'structure':
-                    this.view(data);
-                    return;
-                default: throw new Error('The viewer does not know this action from the model.');
-            }
+            case 'model':
+                switch (action) {
+                    case 'structure':
+                        this.view(data);
+                        return;
+                    default: throw new Error('The viewer does not know this action from the model.');
+                }
+                ;
+            case 'controller':
+                switch (action) {
+                    case 'activeNavBttn':
+                        document.querySelector(`${target}`).classList.add('active');
+                        return;
+                    default: throw new Error('The viewer does not know this action from the model.');
+                }
+                ;
             default: throw new Error('The viewer does not know this sender.');
         }
     }

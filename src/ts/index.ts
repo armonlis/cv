@@ -5,6 +5,10 @@ import { startLoaderId, structure } from './app/constants';
 
 const viewer = new Viewer({ startLoaderId });
 const model = new Model({ HTMLStructure: structure });
+const controller = new Controller();
+controller.regListener({type: 'click', node: 'nav', target: '#nav-button1', action: 'activeNavBttn'});
+controller.regListener({type: 'click', node: 'nav', target: '#nav-button2', action: 'activeNavBttn'});
+controller.regListener({type: 'click', node: 'nav', target: '#nav-button3', action: 'activeNavBttn'});
 
 function runApp(): void {
   function checkLoader() {

@@ -46,7 +46,7 @@
 #app-header #app-header__photo {
   height: 18vh;
   width: 18vh;
-  background-color: yellow;
+  background-color: #E0E714;
   position: relative;
   transform: rotate(12deg);
 }
@@ -134,6 +134,10 @@
 #app-nav .app-nav__elem:hover {
   cursor: pointer;
   background-color: #363FC3;
+}
+#app-nav .active {
+  background-color: #363FC3;
+  color: #E0E714;
 }
 
 #app-main {

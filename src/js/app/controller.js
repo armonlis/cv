@@ -1,53 +1,77 @@
 export default class Controller {
     constructor(options = {}) {
-        var _a;
-        const { eventName, viewDoneEventName, eventChangeModelName } = options;
+        const { toControllerEventName, toModelEventName, toViewerEventName } = options;
         if (!Controller._isCreated) {
             this.listeners = [];
-            this.eventName = eventName !== null && eventName !== void 0 ? eventName : 'eventForController';
-            (_a = this.eventChangeModelName == eventChangeModelName) !== null && _a !== void 0 ? _a : 'modChange';
+            this.toControllerEventName = toControllerEventName !== null && toControllerEventName !== void 0 ? toControllerEventName : 'toController';
+            this.toModeEventName = toModelEventName !== null && toModelEventName !== void 0 ? toModelEventName : 'toModel';
+            this.toViewerEventName = toViewerEventName !== null && toViewerEventName !== void 0 ? toViewerEventName : 'toViewer';
+            document.addEventListener(`${this.toControllerEventName}`, (event) => this.handler(event));
             Controller._isCreated = true;
         }
         else {
             throw new Error('The controller is allready exist.');
         }
-        document.addEventListener(`${this.eventName}`, (event) => this.processEvent(event));
-        document.addEventListener(`${viewDoneEventName !== null && viewDoneEventName !== void 0 ? viewDoneEventName : 'viewDone'}`, () => this.addListeners());
+    }
+    ;
+    addListeners(node = null) {
+        if (!node) {
+            this.listeners.forEach(listener => {
+                const { type, target, action } = listener;
+                const elem = document.querySelector(target);
+                elem.addEventListener(`${type}`, event => {
+                    document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, { detail: {
+                            from: 'app',
+                            action,
+                            details: {
+                                target,
+                            }
+                        } }));
+                });
+            });
+        }
+        ;
     }
     ;
     regListener(listener) {
-        if (listener instanceof Array) {
-            this.listeners.concat(...this.listeners, ...listener);
-        }
-        else {
-            this.listeners.push(listener);
-        }
-        this.addListeners();
+        this.listeners.push(listener);
     }
     ;
-    addListeners() {
-        this.listeners.forEach(elem => {
-            if (elem.element && document.querySelectorAll(elem.element)) {
-                document.querySelectorAll(elem.element).forEach(el => {
-                    el.addEventListener(elem.type, () => {
-                        const detail = [...elem.detail];
-                        detail.forEach(det => { var _a, _b; return det.actTarget = (_b = (_a = det.actTarget) !== null && _a !== void 0 ? _a : el.id) !== null && _b !== void 0 ? _b : ''; });
-                        document.dispatchEvent(new CustomEvent(`${this.eventName}`, { detail }));
-                    });
-                });
-            }
-        });
-    }
-    ;
-    processEvent(event) {
-        console.log('PROCESS>>>', event.detail);
-        event.detail.forEach((elem) => {
-            const { action, actTarget, fill } = elem;
-            switch (action) {
-                case 'addClass': document.dispatchEvent(new CustomEvent(`${this.eventChangeModelName}`, { detail: { action, actTarget, fill } }));
-            }
-            ;
-        });
+    handler(event) {
+        const { from, action, details } = event.detail;
+        const target = details === null || details === void 0 ? void 0 : details.target;
+        switch (from) {
+            case 'viewer':
+                switch (action) {
+                    case 'addListeners':
+                        this.addListeners();
+                        return;
+                    default: throw new Error('The controller does not know this action for the viewer.');
+                }
+                ;
+            case 'model':
+                switch (action) {
+                    default: throw new Error('The controller does not know this action for the model.');
+                }
+                ;
+            case 'app':
+                switch (action) {
+                    case 'activeNavBttn':
+                        document.dispatchEvent(new CustomEvent('toViewer', {
+                            detail: {
+                                from: 'controller',
+                                action: 'activeNavBttn',
+                                details: {
+                                    target
+                                }
+                            }
+                        }));
+                        return;
+                    default: throw new Error('The controller does not know this action for the app.');
+                }
+                ;
+            default: throw new Error('The controller does not know this sender.');
+        }
     }
     ;
 }
