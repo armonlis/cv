@@ -1,5 +1,29 @@
 import { IController, IListener, IControllerConfig } from "./interfaces";
 
+function generateEventGetStructure(target: string) {
+  document.dispatchEvent(new CustomEvent('toModel', {
+    detail: {
+      from: 'controller',
+      action: 'get_structure',
+      details: {
+        mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
+      }
+    }
+  }));
+};
+
+function generateEventActiveNavBttn(target: string) {
+  document.dispatchEvent(new CustomEvent('toViewer', {
+    detail: {
+      from: 'controller',
+      action: 'activeNavBttn',
+      details: {
+        target
+      }
+    }
+  }));
+};
+
 export default class Controller implements IController {
   static _isCreated: boolean = false;
   readonly toControllerEventName: string;
@@ -52,31 +76,15 @@ export default class Controller implements IController {
         default: throw new Error('The controller does not know this action for the viewer.')
       }; 
       case 'model': switch (action) {
+        case 'activeNavBttn': generateEventActiveNavBttn(target); return;
         default: throw new Error('The controller does not know this action for the model.')
       }; 
       case 'app': switch (action) {
-        case 'activeNavBttn': 
-        document.dispatchEvent(new CustomEvent('toModel', {
-          detail: {
-            from: 'controller',
-            action: 'get_structure',
-            details: {
-              mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
-            }
-          }
-        }));
-        document.dispatchEvent(new CustomEvent('toViewer', {
-          detail: {
-            from: 'controller',
-            action: 'activeNavBttn',
-            details: {
-              target
-            }
-          }
-        })); return;
+        case 'activeNavBttn': generateEventGetStructure(target); generateEventActiveNavBttn(target); return;
         default: throw new Error('The controller does not know this action for the app.')
       }; 
       default: throw new Error('The controller does not know this sender.');
     }
   };
 };
+

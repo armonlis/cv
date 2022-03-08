@@ -1,3 +1,27 @@
+function generateEventGetStructure(target) {
+    document.dispatchEvent(new CustomEvent('toModel', {
+        detail: {
+            from: 'controller',
+            action: 'get_structure',
+            details: {
+                mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
+            }
+        }
+    }));
+}
+;
+function generateEventActiveNavBttn(target) {
+    document.dispatchEvent(new CustomEvent('toViewer', {
+        detail: {
+            from: 'controller',
+            action: 'activeNavBttn',
+            details: {
+                target
+            }
+        }
+    }));
+}
+;
 export default class Controller {
     constructor(options = {}) {
         const { toControllerEventName, toModelEventName, toViewerEventName } = options;
@@ -51,30 +75,17 @@ export default class Controller {
                 ;
             case 'model':
                 switch (action) {
+                    case 'activeNavBttn':
+                        generateEventActiveNavBttn(target);
+                        return;
                     default: throw new Error('The controller does not know this action for the model.');
                 }
                 ;
             case 'app':
                 switch (action) {
                     case 'activeNavBttn':
-                        document.dispatchEvent(new CustomEvent('toModel', {
-                            detail: {
-                                from: 'controller',
-                                action: 'get_structure',
-                                details: {
-                                    mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
-                                }
-                            }
-                        }));
-                        document.dispatchEvent(new CustomEvent('toViewer', {
-                            detail: {
-                                from: 'controller',
-                                action: 'activeNavBttn',
-                                details: {
-                                    target
-                                }
-                            }
-                        }));
+                        generateEventGetStructure(target);
+                        generateEventActiveNavBttn(target);
                         return;
                     default: throw new Error('The controller does not know this action for the app.');
                 }

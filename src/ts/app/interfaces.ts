@@ -60,6 +60,5 @@ export interface IControllerConfig {
 };
 
 export interface IStructureOptions {
-  lang?: 'en' | 'ru',
   mainContent?: 'mainContent0'
 };
