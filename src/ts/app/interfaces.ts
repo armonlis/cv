@@ -1,7 +1,13 @@
 export interface IElementStructure {
   tag: string,
   id: string,
-  fill: Record<string, string>,
+  fill: Record<string, string> | Record<string, Record<string, string>>,
+};
+
+export interface IMainElementStructure {
+  tag: string,
+  id: string,
+  fill: Record<string, Record<string, string>>,
 };
 
 export interface IElement {
@@ -18,7 +24,7 @@ export interface IListener {
 };
 
 export interface IModel {
-  getStruct: (lang: string) => void,
+  getStruct: (options: IStructureOptions) => void,
   
 };
 
@@ -40,7 +46,7 @@ export interface IModelConfig {
   HTMLStructure: { 
     header: IElementStructure,
     nav: IElementStructure,
-    main: IElementStructure,
+    main: IMainElementStructure,
     footer: IElementStructure
   },
   toModelEventName?: string,
@@ -51,4 +57,9 @@ export interface IControllerConfig {
   toControllerEventName?: string,
   toViewerEventName?: string,
   toModelEventName?: string
+};
+
+export interface IStructureOptions {
+  lang?: 'en' | 'ru',
+  mainContent?: 'mainContent0'
 };

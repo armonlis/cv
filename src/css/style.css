@@ -135,7 +135,7 @@
   cursor: pointer;
   background-color: #363FC3;
 }
-#app-nav .active {
+#app-nav .app-nav__elem_active {
   background-color: #363FC3;
   color: #E0E714;
 }
@@ -143,6 +143,26 @@
 #app-main {
   min-height: 53vh;
   width: 98vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+#app-main .main-headers {
+  font-family: RussoOne;
+  font-size: 4vh;
+  margin: 3vh 0;
+  padding: 1vh;
+  color: #fff;
+  text-decoration: underline;
+  background-color: #3498DB;
+}
+#app-main p {
+  font-family: Roboto;
+  font-size: 3vh;
+  margin: 2vh;
+  display: block;
+  width: 100%;
 }
 
 #app-footer {

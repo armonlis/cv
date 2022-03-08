@@ -1,16 +1,16 @@
-import { IModel, IElementStructure, IModelConfig } from './interfaces';
+import { IModel, IElementStructure, IModelConfig, IStructureOptions, IMainElementStructure } from './interfaces';
 
 export default class Model implements IModel {
   static _isCreated = false;
   header: IElementStructure;
   nav: IElementStructure;
-  main: IElementStructure;
+  main: IMainElementStructure;
   footer: IElementStructure;
   readonly toModelEventName: string;
   readonly modelEventName: string;
   readonly toViewerEventName: string;
   
-  constructor(options: IModelConfig) {
+  constructor(options?: IModelConfig) {
     if (!Model._isCreated) {
       const { HTMLStructure, toModelEventName, toViewerEventName } = options;
       const { header, nav, main, footer } = HTMLStructure;
@@ -26,7 +26,9 @@ export default class Model implements IModel {
     }
   };
   
-  getStruct(lang: string = 'en') {
+  getStruct(options?: IStructureOptions) {
+    const lang = options?.lang ?? 'en';
+    const mainContent = options?.mainContent ?? 'mainContent0';
     document.dispatchEvent(new CustomEvent(`${this.toViewerEventName}`, { 
       detail: {
         from: 'model',
@@ -35,7 +37,7 @@ export default class Model implements IModel {
           data: [
             {...this.header, fill: this.header.fill[lang]},
             {...this.nav, fill: this.nav.fill[lang]},
-            {...this.main, fill: this.main.fill[lang]},
+            {...this.main, fill: this.main.fill[lang][mainContent]},
             {...this.footer, fill: this.footer.fill[lang]}
           ]
         }
@@ -45,10 +47,11 @@ export default class Model implements IModel {
 
   handler(event: CustomEvent) {
     const { from, action, details } = event.detail;
-    const { lang } = details;
+    const lang = details?.lang ?? 'en';
+    const mainContent = details?.mainContent ?? 'mainContent0';
     switch (from) {
-      case 'viewer': switch (action) {
-        case 'get_structure': this.getStruct(lang); return;
+      case 'controller': switch (action) {
+        case 'get_structure': this.getStruct({ lang, mainContent }); return;
         default: throw new Error('The model does not know this action for viewer.');
       };
       default: throw new Error('The model does not know this sender.');

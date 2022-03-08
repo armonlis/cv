@@ -57,6 +57,15 @@ export default class Controller {
             case 'app':
                 switch (action) {
                     case 'activeNavBttn':
+                        document.dispatchEvent(new CustomEvent('toModel', {
+                            detail: {
+                                from: 'controller',
+                                action: 'get_structure',
+                                details: {
+                                    mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
+                                }
+                            }
+                        }));
                         document.dispatchEvent(new CustomEvent('toViewer', {
                             detail: {
                                 from: 'controller',

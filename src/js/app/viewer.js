@@ -53,7 +53,8 @@ export default class Viewer {
             case 'controller':
                 switch (action) {
                     case 'activeNavBttn':
-                        document.querySelector(`${target}`).classList.add('active');
+                        document.querySelectorAll('.app-nav__elem').forEach(el => el.classList.remove('app-nav__elem_active'));
+                        document.querySelector(`${target}`).classList.add('app-nav__elem_active');
                         return;
                     default: throw new Error('The viewer does not know this action from the model.');
                 }
