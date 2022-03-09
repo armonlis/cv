@@ -24,6 +24,22 @@ function generateEventActiveNavBttn(target: string) {
   }));
 };
 
+function addList(listener: IListener, toControllerEventName: string) {
+  const { type, target, action } = listener;
+  const elem = document.querySelector(target);
+  if (elem) {
+    elem.addEventListener(`${type}`, event => {
+      document.dispatchEvent(new CustomEvent(`${toControllerEventName}`, {detail: {
+        from: 'app',
+        action,
+        details: {
+          target,
+        }
+      }}))
+    });
+  }
+};
+
 export default class Controller implements IController {
   static _isCreated: boolean = false;
   readonly toControllerEventName: string;
@@ -47,20 +63,11 @@ export default class Controller implements IController {
 
   addListeners(node: IListener['node'] = null) {
     if (!node) {
-      this.listeners.forEach(listener => {
-        const { type, target, action } = listener;
-        const elem = document.querySelector(target);
-        elem.addEventListener(`${type}`, event => {
-          document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, {detail: {
-            from: 'app',
-            action,
-            details: {
-              target,
-            }
-          }}))
-        });
-      });
-    };
+      this.listeners.forEach(listener => addList(listener, this.toControllerEventName));
+    } else {
+      const listeners = this.listeners.filter(el => el.node === node);
+      listeners.forEach(listener => addList(listener, this.toControllerEventName));
+    }
   };
 
   regListener(listener: IListener) {
@@ -70,9 +77,10 @@ export default class Controller implements IController {
   handler(event: CustomEvent) {
     const { from, action, details } = event.detail;
     const target = details?.target;
+    const node = details?.node ?? null;
     switch (from) {
       case 'viewer': switch (action) {
-        case 'addListeners': this.addListeners(); return;
+        case 'addListeners': this.addListeners(node); return;
         default: throw new Error('The controller does not know this action for the viewer.')
       }; 
       case 'model': switch (action) {

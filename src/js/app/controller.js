@@ -22,6 +22,22 @@ function generateEventActiveNavBttn(target) {
     }));
 }
 ;
+function addList(listener, toControllerEventName) {
+    const { type, target, action } = listener;
+    const elem = document.querySelector(target);
+    if (elem) {
+        elem.addEventListener(`${type}`, event => {
+            document.dispatchEvent(new CustomEvent(`${toControllerEventName}`, { detail: {
+                    from: 'app',
+                    action,
+                    details: {
+                        target,
+                    }
+                } }));
+        });
+    }
+}
+;
 export default class Controller {
     constructor(options = {}) {
         const { toControllerEventName, toModelEventName, toViewerEventName } = options;
@@ -40,21 +56,12 @@ export default class Controller {
     ;
     addListeners(node = null) {
         if (!node) {
-            this.listeners.forEach(listener => {
-                const { type, target, action } = listener;
-                const elem = document.querySelector(target);
-                elem.addEventListener(`${type}`, event => {
-                    document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, { detail: {
-                            from: 'app',
-                            action,
-                            details: {
-                                target,
-                            }
-                        } }));
-                });
-            });
+            this.listeners.forEach(listener => addList(listener, this.toControllerEventName));
         }
-        ;
+        else {
+            const listeners = this.listeners.filter(el => el.node === node);
+            listeners.forEach(listener => addList(listener, this.toControllerEventName));
+        }
     }
     ;
     regListener(listener) {
@@ -62,13 +69,15 @@ export default class Controller {
     }
     ;
     handler(event) {
+        var _a;
         const { from, action, details } = event.detail;
         const target = details === null || details === void 0 ? void 0 : details.target;
+        const node = (_a = details === null || details === void 0 ? void 0 : details.node) !== null && _a !== void 0 ? _a : null;
         switch (from) {
             case 'viewer':
                 switch (action) {
                     case 'addListeners':
-                        this.addListeners();
+                        this.addListeners(node);
                         return;
                     default: throw new Error('The controller does not know this action for the viewer.');
                 }
