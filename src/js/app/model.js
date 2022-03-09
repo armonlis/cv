@@ -1,7 +1,7 @@
 export default class Model {
     constructor(options) {
         if (!Model._isCreated) {
-            const { HTMLStructure, toModelEventName, toViewerEventName } = options;
+            const { HTMLStructure, toModelEventName, toViewerEventName, toControllerEventName } = options;
             const { header, nav, main, footer } = HTMLStructure;
             this._lang = 'en';
             this._mainContent = 'mainContent0';
@@ -10,6 +10,7 @@ export default class Model {
             this.main = main;
             this.footer = footer;
             this.toViewerEventName = toViewerEventName !== null && toViewerEventName !== void 0 ? toViewerEventName : 'toViewer';
+            this.toControllerEventName = toControllerEventName !== null && toControllerEventName !== void 0 ? toControllerEventName : 'toController';
             document.addEventListener(`${toModelEventName !== null && toModelEventName !== void 0 ? toModelEventName : 'toModel'}`, (event) => this.handler(event));
             Model._isCreated = true;
         }
@@ -32,6 +33,41 @@ export default class Model {
                         Object.assign(Object.assign({}, this.main), { fill: this.main.fill[this._lang][this._mainContent] }),
                         Object.assign(Object.assign({}, this.footer), { fill: this.footer.fill[this._lang] })
                     ]
+                }
+            }
+        }));
+    }
+    ;
+    resetMain() {
+        this._mainContent = 'mainContent0';
+        document.dispatchEvent(new CustomEvent(`${this.toViewerEventName}`, {
+            detail: {
+                from: 'model',
+                action: 'resetMain',
+                details: {
+                    data: Object.assign(Object.assign({}, this.main), { fill: this.main.fill[this._lang][this._mainContent] })
+                }
+            }
+        }));
+    }
+    ;
+    changeMain(content) {
+        this._mainContent = content;
+        document.dispatchEvent(new CustomEvent(`${this.toViewerEventName}`, {
+            detail: {
+                from: 'model',
+                action: 'changeMain',
+                details: {
+                    data: Object.assign(Object.assign({}, this.main), { fill: this.main.fill[this._lang][this._mainContent] })
+                }
+            }
+        }));
+        document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, {
+            detail: {
+                from: 'model',
+                action: 'addListeners',
+                details: {
+                    node: 'main'
                 }
             }
         }));
@@ -61,6 +97,12 @@ export default class Model {
                 switch (action) {
                     case 'get_structure':
                         this.getStruct({ mainContent });
+                        return;
+                    case 'resetMain':
+                        this.resetMain();
+                        return;
+                    case 'changeMain':
+                        this.changeMain(mainContent);
                         return;
                     default: throw new Error('The model does not know this action for viewer.');
                 }

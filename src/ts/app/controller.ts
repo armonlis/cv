@@ -1,10 +1,19 @@
 import { IController, IListener, IControllerConfig } from "./interfaces";
 
-function generateEventGetStructure(target: string) {
+function generateEventResetMain() {
   document.dispatchEvent(new CustomEvent('toModel', {
     detail: {
       from: 'controller',
-      action: 'get_structure',
+      action: 'resetMain'
+    }
+  }))
+};
+
+function generateEventChangeMain(target: string) {
+  document.dispatchEvent(new CustomEvent('toModel', {
+    detail: {
+      from: 'controller',
+      action: 'changeMain',
       details: {
         mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
       }
@@ -61,7 +70,7 @@ export default class Controller implements IController {
     }
   };
 
-  addListeners(node: IListener['node'] = null) {
+  private addListeners(node: IListener['node'] = null) {
     if (!node) {
       this.listeners.forEach(listener => addList(listener, this.toControllerEventName));
     } else {
@@ -74,7 +83,7 @@ export default class Controller implements IController {
     this.listeners.push(listener);
   };
 
-  handler(event: CustomEvent) {
+  private handler(event: CustomEvent) {
     const { from, action, details } = event.detail;
     const target = details?.target;
     const node = details?.node ?? null;
@@ -85,11 +94,12 @@ export default class Controller implements IController {
       }; 
       case 'model': switch (action) {
         case 'activeNavBttn': generateEventActiveNavBttn(target); return;
+        case 'addListeners': this.addListeners(node); return;
         default: throw new Error('The controller does not know this action for the model.')
       }; 
       case 'app': switch (action) {
-        case 'activeNavBttn': generateEventGetStructure(target); generateEventActiveNavBttn(target); return;
-        case 'resetApp': generateEventGetStructure('mainContent0'); return;
+        case 'activeNavBttn': generateEventChangeMain(target); generateEventActiveNavBttn(target); return;
+        case 'resetApp': generateEventResetMain(); return;
         default: throw new Error('The controller does not know this action for the app.')
       }; 
       default: throw new Error('The controller does not know this sender.');

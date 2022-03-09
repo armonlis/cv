@@ -1,8 +1,17 @@
-function generateEventGetStructure(target) {
+function generateEventResetMain() {
     document.dispatchEvent(new CustomEvent('toModel', {
         detail: {
             from: 'controller',
-            action: 'get_structure',
+            action: 'resetMain'
+        }
+    }));
+}
+;
+function generateEventChangeMain(target) {
+    document.dispatchEvent(new CustomEvent('toModel', {
+        detail: {
+            from: 'controller',
+            action: 'changeMain',
             details: {
                 mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
             }
@@ -87,17 +96,20 @@ export default class Controller {
                     case 'activeNavBttn':
                         generateEventActiveNavBttn(target);
                         return;
+                    case 'addListeners':
+                        this.addListeners(node);
+                        return;
                     default: throw new Error('The controller does not know this action for the model.');
                 }
                 ;
             case 'app':
                 switch (action) {
                     case 'activeNavBttn':
-                        generateEventGetStructure(target);
+                        generateEventChangeMain(target);
                         generateEventActiveNavBttn(target);
                         return;
                     case 'resetApp':
-                        generateEventGetStructure('mainContent0');
+                        generateEventResetMain();
                         return;
                     default: throw new Error('The controller does not know this action for the app.');
                 }

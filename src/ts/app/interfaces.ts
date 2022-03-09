@@ -50,7 +50,8 @@ export interface IModelConfig {
     footer: IElementStructure
   },
   toModelEventName?: string,
-  toViewerEventName?: string   
+  toViewerEventName?: string,
+  toControllerEventName?: string   
 };
 
 export interface IControllerConfig {

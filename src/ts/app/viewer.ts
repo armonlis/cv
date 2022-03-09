@@ -9,16 +9,18 @@ export default class Viewer implements IViewer {
     this.toControllerEventName = toControllerEventName ?? 'toController';
     document.addEventListener(`${toViewerEventName ?? 'toViewer'}`, (event: CustomEvent) => this.handler(event));
   };
+  
+  private buildElement(data: IElement): HTMLElement {
+    const node = document.createElement(data.tag);
+    node.id = data.id;
+    node.innerHTML = data.fill;
+    return node;
+  };
 
-  buildHTML(data: IElement[]): HTMLElement {
+  private buildHTML(data: IElement[]): HTMLElement {
     const app = document.createElement('div');
     app.id = 'app';
-    data.forEach(el => {
-      const node = document.createElement(el.tag);
-      node.id = el.id;
-      node.innerHTML = el.fill;
-      app.append(node);
-    });
+    data.forEach(el => app.append(this.buildElement(el)));
     return app;
   };
 
@@ -44,6 +46,14 @@ export default class Viewer implements IViewer {
     switch (from) {
       case 'model': switch (action) {
         case 'structure': this.view(data); return;
+        case 'resetMain':
+          document.querySelectorAll('.app-nav__elem').forEach(el => el.classList.remove('app-nav__elem_active'));
+          document.querySelector('#app-main').replaceWith(this.buildElement(data));
+          return;
+        case 'changeMain':
+          document.querySelectorAll('.app-nav__elem').forEach(el => el.classList.remove('app-nav__elem_active'));
+          document.querySelector('#app-main').replaceWith(this.buildElement(data));
+          return;
         default: throw new Error('The viewer does not know this action from the model.');
       };
       case 'controller': switch (action) {

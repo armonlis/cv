@@ -11,10 +11,11 @@ export default class Model implements IModel {
   readonly toModelEventName: string;
   readonly modelEventName: string;
   readonly toViewerEventName: string;
+  readonly toControllerEventName: string;
   
   constructor(options?: IModelConfig) {
     if (!Model._isCreated) {
-      const { HTMLStructure, toModelEventName, toViewerEventName } = options;
+      const { HTMLStructure, toModelEventName, toViewerEventName, toControllerEventName } = options;
       const { header, nav, main, footer } = HTMLStructure;
       this._lang = 'en';
       this._mainContent = 'mainContent0';
@@ -23,6 +24,7 @@ export default class Model implements IModel {
       this.main = main;
       this.footer = footer;
       this.toViewerEventName = toViewerEventName ?? 'toViewer';
+      this.toControllerEventName = toControllerEventName ?? 'toController';
       document.addEventListener(`${toModelEventName ?? 'toModel'}`, (event: CustomEvent) => this.handler(event));
       Model._isCreated = true;  
     } else {
@@ -43,6 +45,41 @@ export default class Model implements IModel {
             {...this.main, fill: this.main.fill[this._lang][this._mainContent]},
             {...this.footer, fill: this.footer.fill[this._lang]}
           ]
+        }
+      }
+    }));
+  };
+
+  resetMain() {
+    this._mainContent = 'mainContent0';
+    document.dispatchEvent(new CustomEvent(`${this.toViewerEventName}`, { 
+      detail: {
+        from: 'model',
+        action: 'resetMain',
+        details: {
+          data: {...this.main, fill: this.main.fill[this._lang][this._mainContent]}
+        }
+      }
+    }));
+  };
+
+  changeMain(content: typeof this._mainContent) {
+    this._mainContent = content
+    document.dispatchEvent(new CustomEvent(`${this.toViewerEventName}`, { 
+      detail: {
+        from: 'model',
+        action: 'changeMain',
+        details: {
+          data: {...this.main, fill: this.main.fill[this._lang][this._mainContent]}
+        }
+      }
+    }));
+    document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, { 
+      detail: {
+        from: 'model',
+        action: 'addListeners',
+        details: {
+          node: 'main'
         }
       }
     }));
@@ -70,6 +107,8 @@ export default class Model implements IModel {
     switch (from) {
       case 'controller': switch (action) {
         case 'get_structure': this.getStruct({ mainContent }); return;
+        case 'resetMain': this.resetMain(); return;
+        case 'changeMain': this.changeMain(mainContent); return;
         default: throw new Error('The model does not know this action for viewer.');
       };
       default: throw new Error('The model does not know this sender.');
