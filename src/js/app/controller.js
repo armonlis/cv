@@ -96,6 +96,9 @@ export default class Controller {
                         generateEventGetStructure(target);
                         generateEventActiveNavBttn(target);
                         return;
+                    case 'resetApp':
+                        generateEventGetStructure('mainContent0');
+                        return;
                     default: throw new Error('The controller does not know this action for the app.');
                 }
                 ;

@@ -1,3 +1,4 @@
+import backBttn from './backBttn';
 const mainContent0 = `
   <h2 class="main-headers">WELCOME TO MY PERSONAL PAGE.</h2>
   <p>I am beginner frond-end developer. On this page I will be trying to tell you about myself,
@@ -7,12 +8,15 @@ const mainContent0 = `
 `;
 const mainContent1 = `
   <h2 class="main-headers">ABOUT ME.</h2>
+  ${backBttn.en}
 `;
 const mainContent2 = `
   <h2 class="main-headers">ABOUT ME2.</h2>
+  ${backBttn.en}
 `;
 const mainContent3 = `
   <h2 class="main-headers">ABOUT ME3.</h2>
+  ${backBttn.en}
 `;
 export const en = { mainContent0, mainContent1, mainContent2, mainContent3 };
 export const ru = en;

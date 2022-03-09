@@ -89,6 +89,7 @@ export default class Controller implements IController {
       }; 
       case 'app': switch (action) {
         case 'activeNavBttn': generateEventGetStructure(target); generateEventActiveNavBttn(target); return;
+        case 'resetApp': generateEventGetStructure('mainContent0'); return;
         default: throw new Error('The controller does not know this action for the app.')
       }; 
       default: throw new Error('The controller does not know this sender.');

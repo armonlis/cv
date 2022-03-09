@@ -8,6 +8,7 @@ const controller = new Controller();
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button1', action: 'activeNavBttn' });
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button2', action: 'activeNavBttn' });
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button3', action: 'activeNavBttn' });
+controller.regListener({ type: 'click', node: 'main', target: '#backBttn', action: 'resetApp' });
 function runApp() {
     function checkLoader() {
         const isDone = document.querySelector(`#${startLoaderId}`).getAttribute('data-done') === 'true' ? true : false;
