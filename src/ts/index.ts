@@ -21,6 +21,6 @@ function runApp(): void {
     }
   }
   setTimeout(checkLoader, 500);
-};
+}
 
 runApp();

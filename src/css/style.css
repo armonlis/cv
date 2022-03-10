@@ -167,10 +167,34 @@
   background-color: #3498DB;
 }
 #app-main p {
+  text-align: left;
   font-family: Roboto;
   font-size: 3vh;
   margin: 2vh;
   display: block;
+  width: 90%;
+}
+#app-main a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #3498DB;
+  border-radius: 5px;
+}
+#app-main a:hover {
+  background-color: #363FC3;
+}
+
+.main-list {
+  text-align: left;
+  width: 90%;
+}
+
+.main-list-item {
+  text-align: left;
+  font-family: Roboto;
+  font-size: 3vh;
+  list-style-type: none;
+  margin-left: 5vw;
   width: 100%;
 }
 
