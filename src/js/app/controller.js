@@ -48,6 +48,19 @@ function addList(listener, toControllerEventName) {
     }
 }
 ;
+function generateEventSetLang(target) {
+    const lang = target.slice(-2);
+    document.dispatchEvent(new CustomEvent('toModel', {
+        detail: {
+            from: 'controller',
+            action: 'setLang',
+            details: {
+                lang
+            }
+        }
+    }));
+}
+;
 export default class Controller {
     constructor(options = {}) {
         const { toControllerEventName, toModelEventName, toViewerEventName } = options;
@@ -124,6 +137,9 @@ export default class Controller {
                         return;
                     case 'resetApp':
                         generateEventResetMain();
+                        return;
+                    case 'setLang':
+                        generateEventSetLang(target);
                         return;
                     default: throw new Error('The controller does not know this action for the app.');
                 }

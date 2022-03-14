@@ -50,6 +50,19 @@ function addList(listener: IListener, toControllerEventName: string) {
   }
 };
 
+function generateEventSetLang(target: string) {
+  const lang = target.slice(-2);
+  document.dispatchEvent(new CustomEvent('toModel', {
+    detail: {
+      from: 'controller',
+      action: 'setLang',
+      details: {
+        lang
+      }
+    }
+  }));
+};
+
 export default class Controller implements IController {
   static _isCreated: boolean = false;
   readonly toControllerEventName: string;
@@ -113,6 +126,7 @@ export default class Controller implements IController {
       case 'app': switch (action) {
         case 'activeNavBttn': generateEventChangeMain(target); generateEventActiveNavBttn(target); return;
         case 'resetApp': generateEventResetMain(); return;
+        case 'setLang': generateEventSetLang(target); return;
         default: throw new Error('The controller does not know this action for the app.')
       }; 
       default: throw new Error('The controller does not know this sender.');

@@ -10,6 +10,8 @@ controller.regListener({ type: 'click', node: 'nav', target: '#nav-button1', act
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button2', action: 'activeNavBttn' });
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button3', action: 'activeNavBttn' });
 controller.regListener({ type: 'click', node: 'main', target: '#backBttn', action: 'resetApp' });
+controller.regListener({ type: 'click', node: null, target: '#lang-button__ru', action: 'setLang' });
+controller.regListener({ type: 'click', node: null, target: '#lang-button__en', action: 'setLang' });
 controller.regFunction(activateLangButton);
 function runApp() {
     function checkLoader() {

@@ -85,8 +85,8 @@ export default class Model implements IModel {
     }));
   };
 
-  set setLang(lang: typeof this._lang) {
-    this._lang = lang;
+  private setLang(lang: string) {
+    if (lang === 'en' || lang === 'ru') { this._lang = lang };
     this.getStruct();
     if (+this._mainContent.replace(/[^0-9]/g, '')) {
       document.dispatchEvent(new CustomEvent('toController', {
@@ -104,11 +104,13 @@ export default class Model implements IModel {
   handler(event: CustomEvent) {
     const { from, action, details } = event.detail;
     const mainContent = details?.mainContent ?? 'mainContent0';
+    const lang = details?.lang ?? 'en';
     switch (from) {
       case 'controller': switch (action) {
         case 'get_structure': this.getStruct({ mainContent }); return;
         case 'resetMain': this.resetMain(); return;
         case 'changeMain': this.changeMain(mainContent); return;
+        case 'setLang': this.setLang(lang); return;
         default: throw new Error('The model does not know this action for viewer.');
       };
       default: throw new Error('The model does not know this sender.');

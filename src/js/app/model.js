@@ -73,8 +73,11 @@ export default class Model {
         }));
     }
     ;
-    set setLang(lang) {
-        this._lang = lang;
+    setLang(lang) {
+        if (lang === 'en' || lang === 'ru') {
+            this._lang = lang;
+        }
+        ;
         this.getStruct();
         if (+this._mainContent.replace(/[^0-9]/g, '')) {
             document.dispatchEvent(new CustomEvent('toController', {
@@ -89,9 +92,10 @@ export default class Model {
         }
     }
     handler(event) {
-        var _a;
+        var _a, _b;
         const { from, action, details } = event.detail;
         const mainContent = (_a = details === null || details === void 0 ? void 0 : details.mainContent) !== null && _a !== void 0 ? _a : 'mainContent0';
+        const lang = (_b = details === null || details === void 0 ? void 0 : details.lang) !== null && _b !== void 0 ? _b : 'en';
         switch (from) {
             case 'controller':
                 switch (action) {
@@ -103,6 +107,9 @@ export default class Model {
                         return;
                     case 'changeMain':
                         this.changeMain(mainContent);
+                        return;
+                    case 'setLang':
+                        this.setLang(lang);
                         return;
                     default: throw new Error('The model does not know this action for viewer.');
                 }
