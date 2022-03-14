@@ -8,7 +8,11 @@ const langBttn = `
 
 export function activateLangButton() {
   document.querySelector('#lang-button__en').addEventListener('click', () => {
-    document.querySelector('#lang-button__sheet').classList.replace('lang-button__sheet_ru', 'lang-button__sheet_en');
+    if (document.querySelector('#lang-button__sheet').classList.contains('lang-button__sheet_ru')) {
+      document.querySelector('#lang-button__sheet').classList.replace('lang-button__sheet_ru', 'lang-button__sheet_en');
+    } else {
+      document.querySelector('#lang-button__sheet').classList.add('lang-button__sheet_en');
+    }
   });
   document.querySelector('#lang-button__ru').addEventListener('click', () => {
     if (document.querySelector('#lang-button__sheet').classList.contains('lang-button__sheet_en')) {
