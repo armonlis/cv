@@ -159,8 +159,8 @@
 }
 #app-main .main-headers {
   font-family: RussoOne;
-  font-size: 4vh;
-  margin: 3vh 0;
+  font-size: 3vh;
+  margin: 2vh 0;
   padding: 1vh;
   color: #fff;
   text-decoration: underline;
@@ -169,8 +169,8 @@
 #app-main p {
   text-align: left;
   font-family: Roboto;
-  font-size: 3vh;
-  margin: 2vh;
+  font-size: 2vh;
+  margin: 1vh;
   display: block;
   width: 90%;
 }
@@ -192,7 +192,7 @@
 .main-list-item {
   text-align: left;
   font-family: Roboto;
-  font-size: 3vh;
+  font-size: 2vh;
   list-style-type: none;
   margin-left: 5vw;
   width: 100%;
