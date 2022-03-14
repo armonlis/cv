@@ -4,10 +4,15 @@ export interface IElementStructure {
   fill: Record<string, string> | Record<string, Record<string, string>>,
 };
 
+interface IMainContent {
+  ru: Record<string, string>,
+  en: Record<string, string>
+};
+
 export interface IMainElementStructure {
   tag: string,
   id: string,
-  fill: Record<string, Record<string, string>>,
+  fill: IMainContent,
 };
 
 export interface IElement {

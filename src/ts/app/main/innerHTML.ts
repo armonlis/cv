@@ -33,7 +33,7 @@ const mainContent3 = `
 
 export const en = { mainContent0, mainContent1, mainContent2, mainContent3 };
 
-export const ru = `
+const mainContentRu0 = `
 <h2 class="main-headers">ДОБРО ПОЖАЛОВАТЬ НА МОЮ ПЕРСОНАЛЬНУЮ СТРАНИЦУ.</h2>
 <p>Я - начинающий front-end разработчик. На этой странице я попытаюсь рассказать вам о себе, моих знаниях, моем опыте.</p>
 <p>Эта страница - попытка реализации паттерна MCV и SPA (одностраничное приложение).
@@ -47,3 +47,5 @@ export const ru = `
   </ul>
 </p>
 `;
+
+export const ru = { mainContent0: mainContentRu0 };
