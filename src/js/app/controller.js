@@ -1,3 +1,4 @@
+import { activateLangButton } from "./langBttn/langBttn";
 function generateEventResetMain() {
     document.dispatchEvent(new CustomEvent('toModel', {
         detail: {
@@ -52,6 +53,7 @@ export default class Controller {
         const { toControllerEventName, toModelEventName, toViewerEventName } = options;
         if (!Controller._isCreated) {
             this.listeners = [];
+            this.functions = [];
             this.toControllerEventName = toControllerEventName !== null && toControllerEventName !== void 0 ? toControllerEventName : 'toController';
             this.toModeEventName = toModelEventName !== null && toModelEventName !== void 0 ? toModelEventName : 'toModel';
             this.toViewerEventName = toViewerEventName !== null && toViewerEventName !== void 0 ? toViewerEventName : 'toViewer';
@@ -66,6 +68,7 @@ export default class Controller {
     addListeners(node = null) {
         if (!node) {
             this.listeners.forEach(listener => addList(listener, this.toControllerEventName));
+            activateLangButton();
         }
         else {
             const listeners = this.listeners.filter(el => el.node === node);
@@ -73,8 +76,16 @@ export default class Controller {
         }
     }
     ;
+    launchFunctions() {
+        this.functions.forEach(func => func());
+    }
+    ;
     regListener(listener) {
         this.listeners.push(listener);
+    }
+    ;
+    regFunction(func) {
+        this.functions.push(func);
     }
     ;
     handler(event) {
@@ -87,6 +98,9 @@ export default class Controller {
                 switch (action) {
                     case 'addListeners':
                         this.addListeners(node);
+                        return;
+                    case 'launchFunctions':
+                        this.launchFunctions();
                         return;
                     default: throw new Error('The controller does not know this action for the viewer.');
                 }

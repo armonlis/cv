@@ -37,6 +37,12 @@ export default class Viewer {
                 action: 'addListeners'
             }
         }));
+        document.dispatchEvent(new CustomEvent(`${this.toControllerEventName}`, {
+            detail: {
+                from: 'viewer',
+                action: 'launchFunctions'
+            }
+        }));
     }
     ;
     handler(event) {

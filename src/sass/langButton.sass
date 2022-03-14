@@ -1,0 +1,48 @@
+@keyframes animateToRight
+  from
+    left: 0
+  to
+    left: 6vh
+
+@keyframes animateToLeft
+  from
+    left: 6vh
+  to
+    left: 0
+  
+#lang-button
+  height: 6vh
+  width: 12vh
+  background-color: lightgray
+  border-radius: 3vh
+  position: absolute
+  left: 3vw
+  top: calc(50% - 3vh)
+#lang-button__en, #lang-button__ru
+  text-align: center
+  height: 6vh
+  width: 6vh
+  background-color: transparent
+  color: $black
+  font-size: 2vh
+  line-height: 6vh
+  position: absolute
+#lang-button__sheet
+  height: 6vh
+  width: 6vh
+  background-color: blue
+  opacity: .5
+  border-radius: 3vh
+  position: absolute
+.lang-button__sheet_en
+  left: 0
+  animation: 1s linear animateToLeft
+.lang-button__sheet_ru
+  left: 6vh
+  animation: 1s linear animateToRight
+#lang-button__en
+  left: 0
+  cursor: pointer  
+#lang-button__ru  
+  right: 0
+  cursor: pointer

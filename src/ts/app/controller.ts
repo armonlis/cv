@@ -1,4 +1,5 @@
 import { IController, IListener, IControllerConfig } from "./interfaces";
+import { activateLangButton } from "./langBttn/langBttn";
 
 function generateEventResetMain() {
   document.dispatchEvent(new CustomEvent('toModel', {
@@ -55,11 +56,13 @@ export default class Controller implements IController {
   readonly toModeEventName: string;
   readonly toViewerEventName: string;
   private listeners: IListener[];
+  private functions: (() => void)[];
   
   constructor(options: IControllerConfig = {}) {
     const { toControllerEventName, toModelEventName, toViewerEventName } = options;
     if (!Controller._isCreated) {
       this.listeners = [];
+      this.functions = [];
       this.toControllerEventName = toControllerEventName ?? 'toController';
       this.toModeEventName = toModelEventName ?? 'toModel';
       this.toViewerEventName = toViewerEventName ?? 'toViewer';
@@ -73,14 +76,23 @@ export default class Controller implements IController {
   private addListeners(node: IListener['node'] = null) {
     if (!node) {
       this.listeners.forEach(listener => addList(listener, this.toControllerEventName));
+      activateLangButton();
     } else {
       const listeners = this.listeners.filter(el => el.node === node);
       listeners.forEach(listener => addList(listener, this.toControllerEventName));
     }
   };
 
+  private launchFunctions(): void {
+    this.functions.forEach(func => func());
+  };
+
   regListener(listener: IListener) {
     this.listeners.push(listener);
+  };
+
+  regFunction(func: () => void) {
+    this.functions.push(func);
   };
 
   private handler(event: CustomEvent) {
@@ -90,6 +102,7 @@ export default class Controller implements IController {
     switch (from) {
       case 'viewer': switch (action) {
         case 'addListeners': this.addListeners(node); return;
+        case 'launchFunctions': this.launchFunctions(); return;
         default: throw new Error('The controller does not know this action for the viewer.')
       }; 
       case 'model': switch (action) {

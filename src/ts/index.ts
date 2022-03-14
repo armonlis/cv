@@ -2,6 +2,7 @@ import Model from './app/model';
 import Viewer from './app/viewer';
 import Controller from './app/controller';
 import { startLoaderId, structure } from './app/constants';
+import { activateLangButton } from './app/langBttn/langBttn';
 
 const viewer = new Viewer({ startLoaderId });
 const model = new Model({ HTMLStructure: structure });
@@ -10,6 +11,7 @@ controller.regListener({ type: 'click', node: 'nav', target: '#nav-button1', act
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button2', action: 'activeNavBttn' });
 controller.regListener({ type: 'click', node: 'nav', target: '#nav-button3', action: 'activeNavBttn' });
 controller.regListener({ type: 'click', node: 'main', target: '#backBttn', action: 'resetApp' });
+controller.regFunction(activateLangButton);
 
 function runApp(): void {
   function checkLoader() {
