@@ -179,6 +179,7 @@
   color: #fff;
   background-color: #3498DB;
   border-radius: 5px;
+  padding: 0 5px;
 }
 #app-main a:hover {
   background-color: #363FC3;
