@@ -63,8 +63,9 @@ const mainContent3 = `
   <p><img class="main-icon" src="./img/mail.png" alt="mail icon"/>armonius@mail.ru, armonlis@yahoo.com</p>
   <p><img class="main-icon" src="./img/discord.png" alt="discord icon"/>Siarhei Khonski (armonlis)#3533</p>
   <p><img class="main-icon" src="./img/telegram.png" alt="telegram icon"/>Siarhei Khonski</p>
-  <p><img class="main-icon" src="./img/github.png" alt="github icon"/>armonlis</p>
-  <p>The most preferables ways to contact with me are to call on the first phone number or to send me a message with Telegram or Viber.</p>
+  <p><img class="main-icon" src="./img/github.png" alt="github icon"/><a target="_blank" href="https://github.com/armonlis">armonlis</a> </p>
+  <p><img class="main-icon" src="./img/codewars.png" alt="codewars icon"/><a target="_blank" href="https://www.codewars.com/users/armonlis">armonlis</a> </p>
+  <p>The most preferable ways to contact with me are to call on the first phone number or to send me a message with Telegram or Viber.</p>
   ${backBttn.en}
 `;
 
@@ -128,7 +129,8 @@ const mainContentRu3 = `
   <p><img class="main-icon" src="./img/mail.png" alt="mail icon"/>armonius@mail.ru, armonlis@yahoo.com</p>
   <p><img class="main-icon" src="./img/discord.png" alt="discord icon"/>Siarhei Khonski (armonlis)#3533</p>
   <p><img class="main-icon" src="./img/telegram.png" alt="telegram icon"/>Siarhei Khonski</p>
-  <p><img class="main-icon" src="./img/github.png" alt="github icon"/>armonlis</p>
+  <p><img class="main-icon" src="./img/github.png" alt="github icon"/><a target="_blank" href="https://github.com/armonlis">armonlis</a> </p>
+  <p><img class="main-icon" src="./img/codewars.png" alt="codewars icon"/><a target="_blank" href="https://www.codewars.com/users/armonlis">armonlis</a> </p>
   <p>Наиболее предпочтительный способ связи со мной: звонок по первому номеру телефона или отправка сообщения на Telegram или Vider.</p>
   ${backBttn.ru}
 `;
