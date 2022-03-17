@@ -57,7 +57,14 @@ const mainContent2 = `
 `;
 
 const mainContent3 = `
-  <h2 class="main-headers">ABOUT ME3.</h2>
+  <h2 class="main-headers">MY CONTACTS.</h2>
+  <p><img class="main-icon" src="./img/phone.png" alt="phone icon"/>+375(29) 661-07-92, +375(29) 761-07-92</p>
+  <p><img class="main-icon" src="./img/viber.png" alt="viber icon"/> +375(29) 661-07-92</p>
+  <p><img class="main-icon" src="./img/mail.png" alt="mail icon"/>armonius@mail.ru, armonlis@yahoo.com</p>
+  <p><img class="main-icon" src="./img/discord.png" alt="discord icon"/>Siarhei Khonski (armonlis)#3533</p>
+  <p><img class="main-icon" src="./img/telegram.png" alt="telegram icon"/>Siarhei Khonski</p>
+  <p><img class="main-icon" src="./img/github.png" alt="github icon"/>armonlis</p>
+  <p>The most preferables ways to contact with me are to call on the first phone number or to send me a message with Telegram or Viber.</p>
   ${backBttn.en}
 `;
 
@@ -114,4 +121,16 @@ const mainContentRu2 = `
 ${backBttn.ru}
 `;
 
-export const ru = { mainContent0: mainContentRu0, mainContent1: mainContentRu1, mainContent2: mainContentRu2 };
+const mainContentRu3 = `
+  <h2 class="main-headers">МОИ КОНТАКТЫ.</h2>
+  <p><img class="main-icon" src="./img/phone.png" alt="phone icon"/>+375(29) 661-07-92, +375(29) 761-07-92</p>
+  <p><img class="main-icon" src="./img/viber.png" alt="viber icon"/> +375(29) 661-07-92</p>
+  <p><img class="main-icon" src="./img/mail.png" alt="mail icon"/>armonius@mail.ru, armonlis@yahoo.com</p>
+  <p><img class="main-icon" src="./img/discord.png" alt="discord icon"/>Siarhei Khonski (armonlis)#3533</p>
+  <p><img class="main-icon" src="./img/telegram.png" alt="telegram icon"/>Siarhei Khonski</p>
+  <p><img class="main-icon" src="./img/github.png" alt="github icon"/>armonlis</p>
+  <p>Наиболее предпочтительный способ связи со мной: звонок по первому номеру телефона или отправка сообщения на Telegram или Vider.</p>
+  ${backBttn.ru}
+`;
+
+export const ru = { mainContent0: mainContentRu0, mainContent1: mainContentRu1, mainContent2: mainContentRu2, mainContent3: mainContentRu3 };
