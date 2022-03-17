@@ -48,7 +48,8 @@ const mainContent1 = `
   ${backBttn.en}
 `;
 const mainContent2 = `
-  <h2 class="main-headers">ABOUT ME2.</h2>
+  <h2 class="main-headers">MY PROJECTS.</h2>
+  <p>This page's GitHub repository - <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a></p> 
   ${backBttn.en}
 `;
 const mainContent3 = `
@@ -97,6 +98,11 @@ const mainContentRu1 = `<h2 class="main-headers">ОБО МНЕ.</h2>
 <p>В первую очередь ищу удаленную работу. Возможно день в офисе, но оставшееся время только удаленно. 
 В начале готов быть на позиции стажера, возможно, даже без вознаграждения. Готов к переезду.</p>
 <p>Жду ваших предложений.</p>
-${backBttn.en}
+${backBttn.ru}
 `;
-export const ru = { mainContent0: mainContentRu0, mainContent1: mainContentRu1 };
+const mainContentRu2 = `
+<h2 class="main-headers">МОИ ПРОЕКТЫ.</h2>
+<p>GitHub репозиторий этой страницы - <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a></p> 
+${backBttn.ru}
+`;
+export const ru = { mainContent0: mainContentRu0, mainContent1: mainContentRu1, mainContent2: mainContentRu2 };
