@@ -1,68 +1,6 @@
 import { IController, IListener, IControllerConfig } from "./interfaces";
 import { activateLangButton } from "./langBttn/langBttn";
-
-function generateEventResetMain() {
-  document.dispatchEvent(new CustomEvent('toModel', {
-    detail: {
-      from: 'controller',
-      action: 'resetMain'
-    }
-  }))
-};
-
-function generateEventChangeMain(target: string) {
-  document.dispatchEvent(new CustomEvent('toModel', {
-    detail: {
-      from: 'controller',
-      action: 'changeMain',
-      details: {
-        mainContent: `mainContent${target.replace(/[^0-9]/g, '')}`
-      }
-    }
-  }));
-};
-
-function generateEventActiveNavBttn(target: string) {
-  document.dispatchEvent(new CustomEvent('toViewer', {
-    detail: {
-      from: 'controller',
-      action: 'activeNavBttn',
-      details: {
-        target
-      }
-    }
-  }));
-};
-
-function addList(listener: IListener, toControllerEventName: string) {
-  const { type, target, action } = listener;
-  const elem = document.querySelector(target);
-  if (elem) {
-    elem.addEventListener(`${type}`, event => {
-      document.dispatchEvent(new CustomEvent(`${toControllerEventName}`, {detail: {
-        from: 'app',
-        action,
-        details: {
-          target,
-        }
-      }}))
-    });
-  }
-};
-
-function generateEventSetLang(target: string) {
-  const lang = target.slice(-2);
-  document.dispatchEvent(new CustomEvent('toModel', {
-    detail: {
-      from: 'controller',
-      action: 'setLang',
-      details: {
-        lang
-      }
-    }
-  }));
-};
-
+import { generateEventResetMain, generateEventChangeMain, generateEventActiveNavBttn, addList, generateEventSetLang } from './controllerFunc';
 export default class Controller implements IController {
   static _isCreated: boolean = false;
   readonly toControllerEventName: string;
@@ -133,4 +71,3 @@ export default class Controller implements IController {
     }
   };
 };
-
