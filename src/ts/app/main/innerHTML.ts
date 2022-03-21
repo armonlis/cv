@@ -2,7 +2,7 @@ import backBttn from './backBttn';
 
 const mainContent0 = `
   <h2 class="main-headers">WELCOME TO MY PERSONAL PAGE.</h2>
-  <p>This SPA (single page application) was created as an example of the MCV pattern's implementation.
+  <p>This SPA (single page application) was created as an example of the MVC pattern's implementation.
   As a classic realization this application has the model, what contains an object with the application data and can change this object. 
   The viewer can get data from the model and make from it HTML code. 
   The controller adds listeners to the page and listens to them, gives orders to the model to change its condition. 
@@ -73,7 +73,7 @@ export const en = { mainContent0, mainContent1, mainContent2, mainContent3 };
 
 const mainContentRu0 = `
 <h2 class="main-headers">ДОБРО ПОЖАЛОВАТЬ НА МОЮ ПЕРСОНАЛЬНУЮ СТРАНИЦУ.</h2>
-<p>Это SPA (одностраничное приложение) было создано в качестве примера реализации паттерна MCV.
+<p>Это SPA (одностраничное приложение) было создано в качестве примера реализации паттерна MVC.
 Как и в классической реализации это приложение состоит из модели, которая содержит объект с данными приложения и может его изменять.
 Вьювер может получать данные от модели и строить из них HTML код.
 Контроллер добавляет слушателей событий и слушает их, дает указания модели изменить свое состояние.
