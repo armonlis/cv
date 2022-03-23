@@ -18,7 +18,8 @@ module.exports = {
         {from: "./src/*.html", to: path.join(__dirname, "dist/[name].html")},
         {from: "./src/css/style.css", to: path.join(__dirname, "dist")},
         {from: "./src/css/style.css.map", to: path.join(__dirname, "dist")},
-        {from: "./src/img", to: path.join(__dirname, "dist/img")}
+        {from: "./src/img", to: path.join(__dirname, "dist/img")},
+        {from: "./src/fonts/", to: path.join(__dirname, "dist/fonts")}
       ]
     })
   ]
