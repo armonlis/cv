@@ -20,7 +20,3 @@ See the code realizing the viewer in the file ./src/ts/app/viewer.ts.
 The controller can collect the listeners and add them as to the whole page so to a single element. All of events emitted from user's actions handles the controller.
 
 See the code realizing the controller in the file ./src/ts/app/controller.ts.
-
-
-
-
