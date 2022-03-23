@@ -1,0 +1,61 @@
+#app-header
+  width: 98%
+  min-height: 20vh
+  display: flex
+  align-items: center
+  justify-content: space-between
+  flex-wrap: wrap
+  #app-header__photo
+    height: 18vh
+    width: 18vh
+    background-color: $yellow
+    position: relative
+    transform: rotate(12deg)
+    #app-header__photo-clip
+      height: 8vh
+      transform: rotate(5deg)
+      position: absolute
+      left: 1vh
+      top: -1vh
+    #app-header__photo-photo
+      height: 15vh
+      margin-top: 1.5vh
+      margin-left: 3vh
+  #app-header__main
+    height: 18vh
+    min-width: 50vw
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    h1
+      display: block
+      font-family: MarckScript
+      font-size: 8vh
+    h3
+      height: 4vh
+      padding: 0 1vh
+      font-size: 3vh
+  #app-header__contacts
+    height: 18vh
+    min-width: 30vw
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    h3
+      height: 4vh
+      padding: 0 1vh
+      font-size: 3vh
+    ul
+      list-style-type: none
+    li
+      font-family: MarckScript
+      font-size: 2vh
+
+  .stamp
+    display: block
+    font-family: RussoOne
+    color: $white
+    background-color: $l_blue
+    text-decoration: underline

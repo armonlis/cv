@@ -1,0 +1,25 @@
+@keyframes animateMain {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@font-face {
+  font-family: MarckScript;
+  font-weight: 400;
+  src: url("./fonts/MarckScript-Regular.ttf");
+}
+@font-face {
+  font-family: RussoOne;
+  font-weight: 400;
+  src: url("./fonts/RussoOne-Regular.ttf");
+}
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  src: url("./fonts/Roboto-Regular.ttf");
+}
+
+/*# sourceMappingURL=constants.css.map */
