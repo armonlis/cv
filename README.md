@@ -20,3 +20,9 @@ See the code realizing the viewer in the file ./src/ts/app/viewer.ts.
 The controller can collect the listeners and add them as to the whole page so to a single element. All of events emitted from user's actions handles the controller.
 
 See the code realizing the controller in the file ./src/ts/app/controller.ts.
+
+## Build the application.
+
+To build the application enter in the console *npm run build*.
+
+Also you can visit the page with this application *[GitHub](https://armonlis.github.io/examples/cv)*.
