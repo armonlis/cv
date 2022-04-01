@@ -34,12 +34,12 @@ const mainContent1 = `
   I continue to study by my own.</p>
   <p>Nowadays I have following knowledges:</p>
   <ul class="main-list">
-    <li class="main-list-item">English (between A2 - B2)</li>
-    <li class="main-list-item">HTML, CSS, SASS</li>
+    <li class="main-list-item">English (I hope on the way to B1)</li>
+    <li class="main-list-item">HTML, CSS, SASS, Styled Components</li>
     <li class="main-list-item">JavaScript</li>
     <li class="main-list-item">TypeScript</li>
     <li class="main-list-item">React</li>
-    <li class="main-list-item">WebPack</li>
+    <li class="main-list-item">WebPack, Git</li>
   </ul>
   <p>But I do not have any expirience in the comercial development.</p>
   <p>First of all I am looking for a remote job. 
@@ -52,7 +52,11 @@ const mainContent1 = `
 
 const mainContent2 = `
   <h2 class="main-headers">MY PROJECTS.</h2>
-  <p>This page's GitHub repository - <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a></p> 
+  <p>This page's GitHub repository - <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a></p>
+  <p>The GitHub repository with the React app imitating an old-fashioned calculator - 
+    <a target="_blank" href="https://github.com/armonlis/calculator/tree/main">GitHub</a>,
+    the site with it - <a target="_blank" href="https://armonlis.github.io/examples/calculator">Calculator</a>     
+  </p>  
   ${backBttn.en}
 `;
 
@@ -102,12 +106,12 @@ const mainContentRu1 = `<h2 class="main-headers">ОБО МНЕ.</h2>
 Продолжаю самостоятельное обучение.</p>
 <p>На сегодняшний день обладаю следующими знаниями:</p>
 <ul class="main-list">
-  <li class="main-list-item">Английский (между A2 - B2)</li>
-  <li class="main-list-item">HTML, CSS, SASS</li>
+  <li class="main-list-item">Английский (на пути к B1, я надеюсь)</li>
+  <li class="main-list-item">HTML, CSS, SASS, Styled Components</li>
   <li class="main-list-item">JavaScript</li>
   <li class="main-list-item">TypeScript</li>
   <li class="main-list-item">React</li>
-  <li class="main-list-item">WebPack</li>
+  <li class="main-list-item">WebPack, Git</li>
 </ul>
 <p>Не имею опыта коммерческой разработки.</p>
 <p>В первую очередь ищу удаленную работу. Возможно день в офисе, но оставшееся время только удаленно. 
@@ -118,7 +122,11 @@ ${backBttn.ru}
 
 const mainContentRu2 = `
 <h2 class="main-headers">МОИ ПРОЕКТЫ.</h2>
-<p>GitHub репозиторий этой страницы - <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a></p> 
+<p>GitHub репозиторий этой страницы - <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a></p>
+<p>GitHub репозиторий React приложения, иммитирующего кнопочный калькулятор - 
+  <a target="_blank" href="https://github.com/armonlis/calculator/tree/main">GitHub</a>,
+  страница с ним - <a target="_blank" href="https://armonlis.github.io/examples/calculator">Calculator</a>
+</p> 
 ${backBttn.ru}
 `;
 
