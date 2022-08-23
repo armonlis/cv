@@ -5,7 +5,7 @@ export const en = `
   </div>
   <div id="app-header__main">
     <h1>Siarhei Khonski</h1>
-    <h3 class="stamp">JUNIOR FRONT-END DEVELOPER</h3>
+    <h3 class="stamp">JUNIOR FULL STACK DEVELOPER</h3>
   </div>
   <div id="app-header__contacts">
     <h3 class="stamp">CONTACTCS:</h3>
@@ -26,7 +26,7 @@ export const ru = `
 </div>
 <div id="app-header__main">
   <h1>Сергей Хонский</h1>
-  <h3 class="stamp">JUNIOR FRONT-END DEVELOPER</h3>
+  <h3 class="stamp">JUNIOR FULL STACK DEVELOPER</h3>
 </div>
 <div id="app-header__contacts">
   <h3 class="stamp">CONTACTCS:</h3>

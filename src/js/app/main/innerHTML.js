@@ -21,14 +21,13 @@ const mainContent0 = `
 `;
 const mainContent1 = `
   <h2 class="main-headers">ABOUT ME.</h2>
-  <p>So I am 38 years old and I began to learn JavaScript something about 1,5 years ago. 
+  <p>So I am 39 years old and I began to learn JavaScript something about 2 years ago. 
   Before that moment I had been working as an electrician almost all my life. 
-  But the situation in my country made me to look on my life in the different way. 
-  I left the capital city and moved to a small village...</p>
-  <p>By this moment I graduated two courses from RSSchool. 
-  The first course was the JavaScript front end course, the second one was the React course. 
+  </p>
+  <p>By this moment I graduated three courses from RSSchool. 
+  The first course was the JavaScript front end course, the second one was the React course, the third one was NodeJS course. 
   If you are interested you can look at the certificates <a target="_blank" href="https://app.rs.school/certificate/4o0kji60">REACT</a> 
-  <a target="_blank" href="https://app.rs.school/certificate/4o0kji60">JSFE</a>. 
+  <a target="_blank" href="https://app.rs.school/certificate/4o0kji60">JSFE</a> <a target="_blank" href="https://app.rs.school/certificate/h8kttn86">NodeJS</a>. 
   I continue to study by my own.</p>
   <p>Nowadays I have following knowledges:</p>
   <ul class="main-list">
@@ -37,13 +36,11 @@ const mainContent1 = `
     <li class="main-list-item">JavaScript</li>
     <li class="main-list-item">TypeScript</li>
     <li class="main-list-item">React</li>
+    <li class="main-list-item">NestJS, GraphQL, TypeORM, Docker</li>
     <li class="main-list-item">WebPack, Git</li>
   </ul>
   <p>But I do not have any expirience in the comercial development.</p>
-  <p>First of all I am looking for a remote job. 
-  It can be one day per week in the office, but all the left time only remotely. 
-  At the begin I am ready to be a trainee maybe even without a salary. 
-  I ready to the relocation, but I think it is too early to speak about it.</p>
+  <p>First of all I am looking for a remote job.I am ready to the relocation.</p>
   <p>I am waiting for your offers.</p>
   ${backBttn.en}
 `;
@@ -88,27 +85,26 @@ const mainContentRu0 = `
 <p>Если вы хотите больше узнать о реализации данного приложения, посетите мой репозиторий <a target="_blank" href="https://github.com/armonlis/cv/tree/main">GitHub</a>.</p>
 `;
 const mainContentRu1 = `<h2 class="main-headers">ОБО МНЕ.</h2>
-<p>Итак, мне 38 лет и я начал изучать JavaScript около 1,5 лет назад. 
+<p>Итак, мне 39 лет и я начал изучать JavaScript около 2 лет назад. 
 До того момента я проработал электриком почти всю мою жизнь. 
-Но ситуация в моей стране заставила меня взглянуть на жизнь по-другому. 
-Я покинул столицу и переехал в небольшую деревню...</p>
-<p>К данному моменту я закончил два курса от RSSchool. 
-Первый был JavaScript front end курс, второй - курс по React. 
-Если вам интересно вы можете взглянуть на сертификаты <a target="_blank" href="https://app.rs.school/certificate/4o0kji60">REACT</a> 
-<a target="_blank" href="https://app.rs.school/certificate/4o0kji60">JSFE</a>. 
+</p>
+<p>К данному моменту я закончил три курса от RSSchool. 
+Первый был JavaScript front end курс, второй - курс по React, третий - NodeJS. 
+Если вам интересно, вы можете взглянуть на сертификаты <a target="_blank" href="https://app.rs.school/certificate/4o0kji60">REACT</a> 
+<a target="_blank" href="https://app.rs.school/certificate/4o0kji60">JSFE</a> <a target="_blank" href="https://app.rs.school/certificate/h8kttn86">NodeJS</a>. 
 Продолжаю самостоятельное обучение.</p>
 <p>На сегодняшний день обладаю следующими знаниями:</p>
 <ul class="main-list">
-  <li class="main-list-item">Английский (на пути к B1, я надеюсь)</li>
-  <li class="main-list-item">HTML, CSS, SASS, Styled Components</li>
-  <li class="main-list-item">JavaScript</li>
-  <li class="main-list-item">TypeScript</li>
-  <li class="main-list-item">React</li>
-  <li class="main-list-item">WebPack, Git</li>
-</ul>
+    <li class="main-list-item">English (I hope on the way to B1)</li>
+    <li class="main-list-item">HTML, CSS, SASS, Styled Components</li>
+    <li class="main-list-item">JavaScript</li>
+    <li class="main-list-item">TypeScript</li>
+    <li class="main-list-item">React</li>
+    <li class="main-list-item">NestJS, GraphQL, TypeORM, Docker</li>
+    <li class="main-list-item">WebPack, Git</li>
+  </ul>
 <p>Не имею опыта коммерческой разработки.</p>
-<p>В первую очередь ищу удаленную работу. Возможно день в офисе, но оставшееся время только удаленно. 
-В начале готов быть на позиции стажера, возможно, даже без вознаграждения. Готов к переезду.</p>
+<p>В первую очередь ищу удаленную работу. Готов к переезду.</p>
 <p>Жду ваших предложений.</p>
 ${backBttn.ru}
 `;
